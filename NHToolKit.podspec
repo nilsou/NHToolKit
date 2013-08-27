@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
                     - UIKit+Bold
                     - UIViewController+Hierarchy
                    DESC
+  s.homepage     = 'http://github.com/nilsou/NHToolKit'
   s.license      = 'MIT'
   s.author       = { "Nils Hayat" => "nilsou@gmail.com" }
   s.source       = { :git => "https://github.com/nilsou/NHToolKit.git", :tag => s.version.to_s }
