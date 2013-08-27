@@ -1,19 +1,19 @@
 //
-//  NHSlideshowImagesView.m
+//  NHSlideshowImageView.m
 //
 //  Created by Nils Hayat on 8/22/13.
 //  Copyright (c) 2013 Nils Hayat. All rights reserved.
 //
 
-#import "NHSlideshowImagesView.h"
+#import "NHSlideshowImageView.h"
 
-@interface NHSlideshowImagesView ()
+@interface NHSlideshowImageView ()
 
 @property (nonatomic, strong) NSTimer *timer;
 
 @end
 
-@implementation NHSlideshowImagesView
+@implementation NHSlideshowImageView
 
 -(void)setupTimer
 {
@@ -32,6 +32,12 @@
 		self.image = images[0];
 	}
 	
+	[self setupTimer];
+}
+
+-(void)setRotationDuration:(NSTimeInterval)rotationDuration
+{
+	_rotationDuration = rotationDuration;
 	[self setupTimer];
 }
 
