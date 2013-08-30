@@ -19,54 +19,60 @@
     return self;
 }
 
--(UIColor *)topSeparatorColor
-{
-    if (!_topSeparatorColor) {
-        _topSeparatorColor = [UIColor whiteColor];
-    }
-    return _topSeparatorColor;
-}
-
--(UIColor *)bottomSeparatorColor
-{
-    if (!_bottomSeparatorColor) {
-        _bottomSeparatorColor = [UIColor colorWithRed:.62745098f green:.588235294f blue:.490196078f alpha:1.0f];
-    }
-    return _bottomSeparatorColor;
-}
-
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);    
     
-    CGFloat separatorSize;
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    CGFloat separatorThickness;
     if (self.thickLines) {
-        separatorSize = 1.0f;
+        separatorThickness = 1.0f;
     } else {
         CGFloat scale = self.contentScaleFactor;
         BOOL isRetinaDisplay = (scale == 2.0f);
         if (isRetinaDisplay) {
-            separatorSize = 0.5f;
+            separatorThickness = 0.5f;
         } else {
-            separatorSize = 1.0f;
+            separatorThickness = 1.0f;
         }
     }
     
-    
+    // Bottom
     CGRect separator = self.bounds;
-    separator.origin.y = separator.size.height - separatorSize;
-    separator.size.height = separatorSize;
+    separator.origin.y = separator.size.height - separatorThickness;
+    separator.size.height = separatorThickness;
     
-    CGContextSetFillColorWithColor(context, self.bottomSeparatorColor.CGColor);
-    CGContextFillRect(context, separator);
+    if (self.bottomSeparatorColor) {
+        CGContextSetFillColorWithColor(context, self.bottomSeparatorColor.CGColor);
+        CGContextFillRect(context, separator);
+    }
     
+    // Top
     separator.origin.y = 0.0f;
-    CGContextSetFillColorWithColor(context, self.topSeparatorColor.CGColor);
-    CGContextFillRect(context, separator);
+    if (self.topSeparatorColor) {
+        CGContextSetFillColorWithColor(context, self.topSeparatorColor.CGColor);
+        CGContextFillRect(context, separator);
+    }
     
+    // Right
+    separator = self.bounds;
+    separator.origin.x = separator.size.width - separatorThickness;
+    separator.size.width = separatorThickness;
+    
+    if (self.rightSeparatorColor) {
+        CGContextSetFillColorWithColor(context, self.rightSeparatorColor.CGColor);
+        CGContextFillRect(context, separator);
+    }
+    
+    
+    // Left
+    separator.origin.x = 0.0f;
+    if (self.leftSeparatorColor) {
+        CGContextSetFillColorWithColor(context, self.leftSeparatorColor.CGColor);
+        CGContextFillRect(context, separator);
+    }
     
     CGContextRestoreGState(context);
     

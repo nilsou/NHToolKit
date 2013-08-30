@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIColor *topSeparatorColor;
 @property (nonatomic, strong) UIColor *bottomSeparatorColor;
+@property (nonatomic, strong) UIColor *leftSeparatorColor;
+@property (nonatomic, strong) UIColor *rightSeparatorColor;
 @property (nonatomic) BOOL thickLines;
 
 @end
