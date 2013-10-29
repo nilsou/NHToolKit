@@ -15,5 +15,6 @@
 @property (nonatomic, strong) UIColor *leftSeparatorColor;
 @property (nonatomic, strong) UIColor *rightSeparatorColor;
 @property (nonatomic) BOOL thickLines;
+@property (nonatomic) BOOL dotted;
 
 @end

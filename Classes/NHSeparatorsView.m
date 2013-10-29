@@ -39,39 +39,39 @@
         }
     }
     
-    // Bottom
-    CGRect separator = self.bounds;
-    separator.origin.y = separator.size.height - separatorThickness;
-    separator.size.height = separatorThickness;
+    CGContextSetLineWidth(context, separatorThickness);
+    
+    if (self.dotted) {
+        CGFloat dash[] = {separatorThickness, separatorThickness};
+        CGContextSetLineDash(context, 0, dash, 2);
+    }
+    
+    if (self.topSeparatorColor) {
+        CGContextSetStrokeColorWithColor(context, self.topSeparatorColor.CGColor);
+        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
+        CGContextStrokePath(context);
+    }
     
     if (self.bottomSeparatorColor) {
-        CGContextSetFillColorWithColor(context, self.bottomSeparatorColor.CGColor);
-        CGContextFillRect(context, separator);
+        CGContextSetStrokeColorWithColor(context, self.bottomSeparatorColor.CGColor);
+        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds));
+        CGContextStrokePath(context);
     }
     
-    // Top
-    separator.origin.y = 0.0f;
-    if (self.topSeparatorColor) {
-        CGContextSetFillColorWithColor(context, self.topSeparatorColor.CGColor);
-        CGContextFillRect(context, separator);
+    if (self.leftSeparatorColor) {
+        CGContextSetStrokeColorWithColor(context, self.leftSeparatorColor.CGColor);
+        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds));
+        CGContextStrokePath(context);
     }
-    
-    // Right
-    separator = self.bounds;
-    separator.origin.x = separator.size.width - separatorThickness;
-    separator.size.width = separatorThickness;
     
     if (self.rightSeparatorColor) {
-        CGContextSetFillColorWithColor(context, self.rightSeparatorColor.CGColor);
-        CGContextFillRect(context, separator);
-    }
-    
-    
-    // Left
-    separator.origin.x = 0.0f;
-    if (self.leftSeparatorColor) {
-        CGContextSetFillColorWithColor(context, self.leftSeparatorColor.CGColor);
-        CGContextFillRect(context, separator);
+        CGContextSetStrokeColorWithColor(context, self.rightSeparatorColor.CGColor);
+        CGContextMoveToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds));
+        CGContextStrokePath(context);
     }
     
     CGContextRestoreGState(context);
