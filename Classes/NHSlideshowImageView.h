@@ -10,6 +10,7 @@
 @interface NHSlideshowImageView : UIImageView
 
 @property (nonatomic,copy) NSArray *images;
+@property (nonatomic,copy) NSArray *imageURLs;
 @property (nonatomic) NSTimeInterval rotationDuration;
 
 @end
