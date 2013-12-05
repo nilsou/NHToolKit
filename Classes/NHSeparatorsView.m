@@ -26,23 +26,10 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     
-    CGFloat separatorThickness;
-    if (self.thickLines) {
-        separatorThickness = 1.0f;
-    } else {
-        CGFloat scale = self.contentScaleFactor;
-        BOOL isRetinaDisplay = (scale == 2.0f);
-        if (isRetinaDisplay) {
-            separatorThickness = 0.5f;
-        } else {
-            separatorThickness = 1.0f;
-        }
-    }
-    
-    CGContextSetLineWidth(context, separatorThickness);
+    CGContextSetLineWidth(context, 1.0);
     
     if (self.dotted) {
-        CGFloat dash[] = {separatorThickness, separatorThickness};
+        CGFloat dash[] = {1.0, 1.0};
         CGContextSetLineDash(context, 0, dash, 2);
     }
     
@@ -77,6 +64,6 @@
     CGContextRestoreGState(context);
     
     [super drawRect:rect];
-    
 }
+
 @end
